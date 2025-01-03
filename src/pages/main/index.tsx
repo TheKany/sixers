@@ -4,18 +4,31 @@ import { useDday } from "../../hooks/useDday";
 import styled from "styled-components";
 import NameTag from "../../components/layout/nameTag";
 import { useEffect, useState } from "react";
-import NBANews from "./components/NBANews";
+// import NBANews from "./components/NBANews";
+import MemberList from "./components/MemberList";
+import LeagueInfo from "./components/LeagueInfo";
 
-type Article = {
-  title: string;
-  description: string;
-  image: string;
-  link: string;
+// type Article = {
+//   title: string;
+//   description: string;
+//   image: string;
+//   link: string;
+// };
+
+type Teams = {
+  name: string;
+  score: string;
+  rate: number;
 };
 
 const Main = () => {
-  const { timePercent, timeLeft } = useDday("2025-01-03", "2024-12-30");
-  const [articles, setArticles] = useState<Article[]>([]);
+  const { timePercent, timeLeft, timeYear } = useDday(
+    "2025-01-03",
+    "2024-12-30"
+  );
+  // const [articles, setArticles] = useState<Article[]>([]);
+  const [season, setSeason] = useState<string>("1");
+  const [teamList, setTeamList] = useState<Teams[]>([]);
 
   // NBA 뉴스 가져오기
   useEffect(() => {
@@ -32,6 +45,28 @@ const Main = () => {
     fetchNews();
   }, []);
 
+  // 시즌 데이터 (임시)
+  useEffect(() => {
+    setSeason("4");
+    setTeamList([
+      {
+        name: "런앤건",
+        score: "4승",
+        rate: 1,
+      },
+      {
+        name: "캐치! 감마핑",
+        score: "3승 1패",
+        rate: 2,
+      },
+      {
+        name: "출석체크",
+        score: "2승 2패",
+        rate: 3,
+      },
+    ]);
+  }, []);
+
   return (
     <Wrapper>
       <Text type="title" fontSize={36}>
@@ -39,10 +74,10 @@ const Main = () => {
       </Text>
 
       {/* NBA 뉴스 */}
-      <Text type="p" style={{ textAlign: "center" }}>
+      {/* <Text type="p" style={{ textAlign: "center" }}>
         Today NBA News
       </Text>
-      <NBANews data={articles} />
+      <NBANews data={articles} /> */}
 
       {/* 투표하기 */}
       <VoteContainer percent={Math.floor(timePercent)}>
@@ -56,6 +91,12 @@ const Main = () => {
           <Text type="p">{String(timeLeft)}</Text>
         </InnerContainer>
       </VoteContainer>
+
+      {/* 팀 멤버 */}
+      <MemberList />
+
+      {/* 리그전용 ( 리그 안하면 사라짐 ) */}
+      <LeagueInfo year={timeYear} season={season} teamList={teamList} />
     </Wrapper>
   );
 };
@@ -64,10 +105,10 @@ export default Main;
 
 const VoteContainer = styled.div<{ percent?: number }>`
   width: 90%;
-  margin: 32px auto;
-  padding: 8px;
-  border: 2px solid #5c665f;
+  border: 1px solid #5c665f;
   border-radius: 8px;
+  margin: 24px auto;
+  padding: 8px;
 
   display: flex;
   flex-direction: column;
@@ -85,7 +126,7 @@ const InnerContainer = styled.div`
   align-items: center;
 
   width: calc(100% - 16px);
-  border: 2px solid #5c665f;
+  border: 1px solid #5c665f;
   border-radius: 8px;
   padding: 8px;
   background-color: #fff;
@@ -102,5 +143,7 @@ const InnerContainer = styled.div`
  * 3. 투표 끝났으면 타이머 100%
  * 3-1. 팀 배정 끝났으면 팀 색 표시
  * 3-2. 팀 배정 안되었으면 회색표시
- *
  */
+
+// TODO: 화이트보드판 ( 점수 기입 / 저장용 )
+// TODO: 배경색 눈편한 보라색 ( 테마색은 보라색으로 )

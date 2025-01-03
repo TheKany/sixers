@@ -9,7 +9,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 interface TextProps {
-  children: string;
+  children: React.ReactNode;
   type: "p" | "span" | "a" | "title";
   href?: string;
   fontSize?: number;
