@@ -1,0 +1,110 @@
+/* reset.css */
+/* 기본 리셋 */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+/* body 기본 스타일 */
+body {
+  line-height: 1.5;
+  font-family: SUITE, system-ui, sans-serif;
+  background: #D9E0CC;
+  color: #5C665F;
+  height: 100%;
+  max-height: 100vh;
+}
+
+/* 리스트 스타일 초기화 */
+ol, ul {
+  list-style: none;
+}
+
+/* 인용문 스타일 초기화 */
+blockquote, q {
+  quotes: none;
+}
+
+blockquote::before, blockquote::after,
+q::before, q::after {
+  content: '';
+  content: none;
+}
+
+/* 테이블 스타일 초기화 */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* 기본 SVG 및 FORM 요소 리셋 */
+button, input, select, textarea {
+  font: inherit;
+  margin: 0;
+}
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+textarea {
+  resize: none;
+}
+
+/* 링크 스타일 초기화 */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* SVG 디스플레이 초기화 */
+svg {
+  display: block;
+  vertical-align: middle;
+}
+
+/* 이미지 및 미디어 요소 초기화 */
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 기본 focus 스타일 리셋 */
+:focus {
+  outline: none;
+}
+
+/* 기타 초기화 */
+fieldset {
+  border: 0;
+}
+
+legend {
+  padding: 0;
+}
