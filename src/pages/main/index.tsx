@@ -3,22 +3,30 @@ import { Text } from "../../components/layout/text";
 import { useDday } from "../../hooks/useDday";
 import styled from "styled-components";
 import NameTag from "../../components/layout/nameTag";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import NBANews from "./components/NBANews";
+
+type Article = {
+  title: string;
+  description: string;
+  image: string;
+  link: string;
+};
 
 const Main = () => {
   const { timePercent, timeLeft } = useDday("2025-01-03", "2024-12-30");
+  const [articles, setArticles] = useState<Article[]>([]);
 
   // NBA 뉴스 가져오기
   useEffect(() => {
     const fetchNews = async () => {
-      try {
-        const response = await fetch("http://localhost:5000/api/news");
-        const html = await response.text();
+      const response = await fetch("http://localhost:5000/api/news");
+      const html = await response.text();
 
-        console.log("html", html);
-      } catch (error) {
-        console.error("Error fetching NBA news:", error);
-      }
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, "text/html");
+
+      console.log(doc);
     };
 
     fetchNews();
@@ -34,7 +42,7 @@ const Main = () => {
       <Text type="p" style={{ textAlign: "center" }}>
         Today NBA News
       </Text>
-      <NewContainer></NewContainer>
+      <NBANews data={articles} />
 
       {/* 투표하기 */}
       <VoteContainer percent={Math.floor(timePercent)}>
@@ -53,12 +61,6 @@ const Main = () => {
 };
 
 export default Main;
-
-const NewContainer = styled.div`
-  width: 90%;
-  margin: 0 auto;
-  border: 2px solid #5c665f;
-`;
 
 const VoteContainer = styled.div<{ percent?: number }>`
   width: 90%;
