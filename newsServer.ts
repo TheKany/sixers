@@ -7,7 +7,7 @@ app.use(cors());
 
 app.get("/api/news", async (req: Request, res: Response) => {
   try {
-    const response = await fetch("https://www.nba.com/news");
+    const response = await fetch("https://www.nba.com/news/category/top-stories");
     const html = await response.text();
     res.send(html);
   } catch (error) {
