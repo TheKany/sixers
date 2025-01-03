@@ -1,19 +1,23 @@
 import React from "react";
-import Wrapper from "../../components/layout/wrapper";
-import styled from "styled-components";
+import { Button } from "../../components/layout/text";
+import { Image } from "../../components/layout/image";
+import { Wrapper } from "../../components/layout/wrapper";
+import { VStack } from "../../components/layout/v-stack";
 
 const LoginPage = () => {
+  const onClickLogin = () => {};
+
   return (
-    <Wrapper>
-      <Image src="./login/basket-net.png" alt="농구골대" />
-      <p>로그인</p>
+    <Wrapper marginVertical="100">
+      <VStack gap={40}>
+        <Image src="./Title.png" alt="팀마스터 로고" />
+
+        <Button onClick={onClickLogin} height={50} variant="kakao">
+          카카오로 로그인
+        </Button>
+      </VStack>
     </Wrapper>
   );
 };
 
 export default LoginPage;
-
-const Image = styled.img`
-  width: 300px;
-  height: 300px;
-`;

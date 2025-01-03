@@ -1,11 +1,14 @@
 {
   "compilerOptions": {
-    "jsx": "react-jsx",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
-    "types": ["node", "jest", "@testing-library/jest-dom"],  // Jest와 Node의 타입 정의 포함
-    "moduleResolution": "node" // 모듈 해석을 Node.js 스타일로 설정
+    "jsx": "react-jsx",
+    "types": ["node", "jest", "@testing-library/jest-dom"],
+    "moduleResolution": "node",
+    "target": "ES6",
+    "module": "commonjs",
+    "outDir": "./build"
   },
-  "include": ["src", "**/*.test.tsx", "**/*.test.ts"] // 소스 및 테스트 파일 포함
+  "include": ["src", "**/*.test.tsx", "**/*.test.ts", "newsServer.ts"]
 }
